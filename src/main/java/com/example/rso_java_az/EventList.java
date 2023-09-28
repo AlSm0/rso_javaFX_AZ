@@ -8,7 +8,7 @@ public class EventList {
     private int timeDiff;
     private ArrayList<Event> dogodki;
     private int calculateTimeDiff(Event e){
-        //todo
+        //?
         return 0;
     }
     public EventList(String i){
@@ -35,5 +35,8 @@ public class EventList {
 
     public int getTimeDiff() {
         return timeDiff;
+    }
+    public void addEvent(Event e){
+        dogodki.add(e);
     }
 }
