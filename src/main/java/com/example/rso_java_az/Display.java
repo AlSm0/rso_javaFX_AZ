@@ -2,12 +2,14 @@ package com.example.rso_java_az;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class Display {
+public class Display extends Parent {
     private TextField TextField;
     private Button add;
     private Button remove;
@@ -23,20 +25,7 @@ public class Display {
         this.label = new Label();
         this.ListView = new ListView<>();
         this.Items = FXCollections.observableArrayList();
-        add.setOnAction(event -> {
-            String text = InputBox.getText();
-            label.setText(text);
-            System.out.println(text);
-            Items.add(text);
-            InputBox.clear();
-        });
-        remove.setOnAction(event -> {
-            if(selectedItem!=1){
-                Items.remove(selectedItem);
-                selectedItem=-1;
-            }
-            InputBox.clear();
-        });
+
         ListView.setItems(Items);
 
         ListView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -47,5 +36,10 @@ public class Display {
                 System.out.println("Selected inbox: " + selectedItem);
             }
         });
+    }
+
+    @Override
+    public Node getStyleableNode() {
+        return super.getStyleableNode();
     }
 }
