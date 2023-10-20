@@ -18,34 +18,23 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-
 public class X extends Application {
-
     public static void main(String[] args) {
         launch(args);
     }
-    //--------------------------------------------------------------
-
-
     public void start(Stage stage) {
-
         HBox root = new HBox(20, makeNamePane());
         root.setPadding(new Insets(10));
         root.setStyle("-fx-border-color:black; -fx-border-width:2px");
-
         stage.setScene( new Scene(root) );
         stage.setTitle("Event handler");
         stage.show();
-
     }
     private BorderPane makeNamePane() {
-
         ObservableList<String> names = FXCollections.observableArrayList();
         ListView<String> listView = new ListView<String>(names);
-
         listView.setEditable(true);
         listView.setCellFactory(TextFieldListCell.forListView());
-
         BorderPane namePane = new BorderPane(listView);
         Label top = new Label("Events");
         top.setPadding( new Insets(10) );
@@ -55,11 +44,9 @@ public class X extends Application {
         top.setAlignment(Pos.CENTER);
         top.setStyle("-fx-background-color: black");
         namePane.setTop(top);
-
         Label selectedNameLabel = new Label();
         selectedNameLabel.textProperty().bind(
                 listView.getSelectionModel().selectedItemProperty().asString("SelectedItem: %s") );
-
         Button deleteNameButton = new Button("Delete");
         deleteNameButton.setMaxWidth(Double.POSITIVE_INFINITY);
         deleteNameButton.disableProperty().bind(
@@ -69,7 +56,6 @@ public class X extends Application {
             if (index >= 0)
                 names.remove(index);
         });
-
         TextField addNameInput = new TextField();
         addNameInput.setPrefColumnCount(10);
         Button addNameButton = new Button("Add: ");
@@ -83,12 +69,9 @@ public class X extends Application {
         });
         addNameButton.defaultButtonProperty().bind( addNameInput.focusedProperty() );
         HBox addNameHolder = new HBox(5,addNameButton,addNameInput);
-
         VBox nameBot = new VBox(12, selectedNameLabel, deleteNameButton, addNameHolder );
         nameBot.setPadding(new Insets(10));
         namePane.setBottom(nameBot);
-
         return namePane;
-
     }
 }
